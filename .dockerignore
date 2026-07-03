@@ -1,0 +1,14 @@
+node_modules
+node-portable
+node-portable.zip
+data
+.git
+.agents
+npm-debug.log
+Dockerfile
+.dockerignore
+render.yaml
+vercel.json
+C:*
+D:*
+E:*

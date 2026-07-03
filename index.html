@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATRIX TERMINAL v1.0.4 - Secure Communication Portal</title>
+    <meta name="description" content="Portal obrolan terminal retro bergaya Matrix dengan enkripsi end-to-end simulasi. Temukan kebenaran di dalam jaringan.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Flat terminal screen container -->
+    <div class="terminal-screen">
+        <!-- Hidden h1 for SEO requirements to keep screen clean -->
+        <h1 class="visually-hidden">Matrix Retro Terminal Portal</h1>
+
+        <main class="terminal-container" id="terminal-container">
+            <!-- HEADER INFO -->
+            <header class="terminal-header">
+                <div class="header-left">SYSTEM: SECURE_COMM_v1.0.4</div>
+                <div class="header-right" id="header-clock">2026-07-02 22:38:00</div>
+            </header>
+
+            <!-- LOGIN SCREEN (INITIAL FLOW) -->
+            <section id="login-screen" class="screen-section active">
+                <div class="terminal-log" id="login-log">
+                    <!-- Standard startup messages -->
+                    <div class="log-line">LEGACY SYSTEM BOOT INITIATED...</div>
+                    <div class="log-line">LOADING COGNITIVE INTERFACE PROTOCOLS...</div>
+                    <div class="log-line">ESTABLISHING CONNECTION THROUGH DEEP COGNITIVE CHANNELS...</div>
+                    <div class="log-line">SYSTEM STATUS: ONLINE</div>
+                </div>
+
+                <!-- Input area for login flow -->
+                <div class="input-line-container" id="login-input-container">
+                    <span class="prompt" id="login-prompt">ENTER ACCESS TOKEN:</span>
+                    <div class="input-wrapper">
+                        <!-- We hide the actual input and mirror it to display cursor -->
+                        <input type="text" id="login-input" class="hidden-input" autocomplete="off" autofocus>
+                        <span class="display-text" id="login-display-text"></span>
+                        <span class="terminal-cursor"></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CHAT SCREEN -->
+            <section id="chat-screen" class="screen-section">
+                <!-- Chat message log, fills up from top to bottom -->
+                <div class="terminal-log" id="chat-log">
+                    <!-- Welcoming text will go here dynamically -->
+                </div>
+
+                <!-- Bottom Chat Input Bar -->
+                <footer class="chat-input-bar">
+                    <div class="input-line-container">
+                        <span class="prompt">&gt;</span>
+                        <div class="input-wrapper">
+                            <input type="text" id="chat-input" class="hidden-input" autocomplete="off" placeholder="[ketik pesan...]">
+                            <span class="display-text" id="chat-display-text"></span>
+                            <span class="placeholder-text" id="chat-placeholder-text">[ketik pesan...]</span>
+                            <span class="terminal-cursor"></span>
+                        </div>
+                    </div>
+                </footer>
+            </section>
+        </main>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

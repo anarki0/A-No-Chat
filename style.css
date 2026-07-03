@@ -1,0 +1,237 @@
+/*
+  Minimalist Retro Black & White Terminal CSS
+  Theme: Pure Black (#000000), Pure White (#FFFFFF), Monospace Fonts
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+    --text-white: #FFFFFF;
+    --dim-gray: #666666;
+    --pure-black: #000000;
+    --font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+}
+
+/* Base resets and styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    background-color: var(--pure-black);
+    color: var(--text-white);
+    font-family: var(--font-family);
+    font-size: 16px;
+    line-height: 1.5;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Terminal Screen Container */
+.terminal-screen {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Core layouts */
+.terminal-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 1.5rem;
+    z-index: 2;
+}
+
+/* Header bar */
+.terminal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Viewport layout */
+.screen-section {
+    display: none;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.screen-section.active {
+    display: flex;
+}
+
+/* Terminal output logs */
+.terminal-log {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    word-break: break-all;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.log-line {
+    white-space: pre-wrap;
+}
+
+.log-line.system {
+    color: var(--text-white);
+    font-weight: bold;
+}
+
+.log-line.error {
+    background-color: var(--text-white);
+    color: var(--pure-black);
+    font-weight: bold;
+    padding: 2px 4px;
+}
+
+.log-line.user {
+    color: var(--text-white);
+}
+
+.log-line.incoming {
+    opacity: 0.9;
+}
+
+/* Form and Inputs */
+.input-line-container {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    margin-top: auto;
+}
+
+#login-input-container {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0.5rem;
+}
+
+.prompt {
+    margin-right: 10px;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.input-wrapper {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* Hide actual input but keep functional */
+.hidden-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background: transparent;
+    color: transparent;
+    border: none;
+    outline: none;
+    cursor: default;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/* Display element styled like custom terminal input */
+.display-text {
+    white-space: pre-wrap;
+    word-break: break-all;
+    min-height: 1.5rem;
+}
+
+.placeholder-text {
+    position: absolute;
+    left: 0;
+    color: var(--dim-gray);
+    pointer-events: none;
+    user-select: none;
+    display: none;
+}
+
+.hidden-input:placeholder-shown ~ .placeholder-text {
+    display: block;
+}
+
+/* Blinking cursor */
+.terminal-cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1.2rem;
+    background-color: var(--text-white);
+    margin-left: 2px;
+    animation: cursor-blink 1s step-end infinite;
+}
+
+/* Retro scrollbar styling (Strictly no rounded corners) */
+.terminal-log::-webkit-scrollbar {
+    width: 12px;
+}
+
+.terminal-log::-webkit-scrollbar-track {
+    background: var(--pure-black);
+    border-left: 1px solid var(--text-white);
+}
+
+.terminal-log::-webkit-scrollbar-thumb {
+    background: var(--text-white);
+    border: 2px solid var(--pure-black);
+}
+
+.terminal-log::-webkit-scrollbar-thumb:hover {
+    background: var(--text-white);
+}
+
+/* Accessibility / SEO class */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* Animations */
+
+/* Blinking Cursor */
+@keyframes cursor-blink {
+    from, to { background-color: transparent; }
+    50% { background-color: var(--text-white); }
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+    .terminal-container {
+        padding: 0.8rem;
+    }
+    .terminal-header {
+        font-size: 0.8rem;
+    }
+    .terminal-log, .input-line-container {
+        font-size: 0.95rem;
+    }
+}

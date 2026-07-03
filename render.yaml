@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: f-chat-backend
+    runtime: docker
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+    disk:
+      name: chat-db-volume
+      mountPath: /app/data
+      sizeGB: 1
